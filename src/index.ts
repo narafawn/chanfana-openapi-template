@@ -40,6 +40,16 @@ const openapi = fromHono(app, {
 	},
 });
 
+openapi.registry.registerComponent(
+  'securitySchemes',
+  'bearerAuth', // 任意の名前（エンドポイント側でこの名前を参照します）
+  {
+    type: 'http',
+    scheme: 'bearer',
+    bearerFormat: 'JWT', // JWTを使用する場合など、任意で指定
+  }
+);
+
 // Register Tasks Sub router
 openapi.route("/tasks", tasksRouter);
 
